@@ -20,7 +20,8 @@
 >### 1.사용자 등록
 >> |최초 화면|등록 실패(이미 있는 이름)|등록 성공|
 >> |:----:|:----:|:----:|
->> |<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login.png?raw=true" title="로그인 창"></img><br/>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login_failed.png?raw=true" title="로그인 실패"></img><br/>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login_success.png?raw=true" title="로그인 성공"></img><br/>|
+>> |<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login.png?raw=true" title="로그인 창"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login_failed.png?raw=true" title="로그인 실패"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login_success.png?raw=true" title="로그인 성공"></img>|
+>>
 >> server(/macaoTalkServer/main.c)의 구현 부
 >>
 <pre><code>
@@ -50,13 +51,15 @@ int init_usr(MYSQL mysql, char *arg, int fd){   //init user (success = 1, failed
     }
     mysql_free_result(res);
     return 1;
-}   
+}
+
 </code></pre>
 >> 테이블의 id 필드를 모두 조회해서 Client에서 입력받은 값과 일치하는 값이 없을 경우 해당 id를 테이블에 추가한다.
 >### 2. 로그인
 >>|로그인 화면|메인화면|
 >>|:---:|:---:|
->>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login.png?raw=true" title="로그인"></img><br/>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/main.png?raw=true" title="메인 화면"></img><br/>|
+>>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login.png?raw=true" title="로그인"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/main.png?raw=true" title="메인 화면"></img>|
+>>
 >> server(/macaoTalkServer/main.c)의 구현 부
 >>
 <pre><code>
@@ -86,12 +89,14 @@ int enter_usr(MYSQL mysql, char *arg, int fd){ //login user (success = 1, failed
     mysql_free_result(res);
     return 0;
 }
+
 </code></pre>
 >> Client에서 입력받은 값과 일치하는 id를 조건으로 조회한 데이터가 존재하면 해당 행의 fd필드를 현재 Client가 접속중인 소켓의 File Descriptor로 update 한다.
 >### 3. 채팅방 생성
 >>|메인 화면|채팅 상대의 이름 입력|채팅 생성|
 >>|:---------:|:---------:|:---------:|
->>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/main.png?raw=true" title="메인화면"></img><br/>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/connecting.png?raw=true" title="이름입력"></img><br/>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/chat.png?raw=true" title="채팅생성"></img><br/>|
+>>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/main.png?raw=true" title="메인화면"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/connecting.png?raw=true" title="이름입력"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/chat.png?raw=true" title="채팅생성"></img>|
+>>
 >> server(/macaoTalkServer/main.c)의 구현 부
 >>
 <pre><code>
@@ -157,6 +162,7 @@ else if(!strcmp(data_buf, "conn")){    //create chat
         }
     }
 }
+
 </code></pre>
 >> Client에서 입력받은 값과 일치하는 id를 조건으로 fd필드를 조회하여 반환한다.
    반환 값이 0일 경우 Client에 “failed”를 전송한다.
@@ -164,8 +170,10 @@ else if(!strcmp(data_buf, "conn")){    //create chat
 > ### 4. 파일 전송
 >> |파일 선택 화면|수신 결과|수신자 채팅방|송신자 채팅방|
 >> |:------:|:------:|:------:|:------:|
->> |<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/select_file.png?raw=true" title="파일 선택"></img><br/>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/file_result.png?raw=true" title="수신 결과"></img><br/>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/get_result.png?raw=true" title="수신자 채팅방"></img><br/>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/send_result.png?raw=true" title="송신자 채팅방"></img><br/>|
+>> |<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/select_file.png?raw=true" title="파일 선택"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/file_result.png?raw=true" title="수신 결과"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/get_result.png?raw=true" title="수신자 채팅방"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/send_result.png?raw=true" title="송신자 채팅방"></img>|
+>>
 >> client(/macaoTalkClient/mainwindow.cpp)의 구현 부(송신자)
+>>
 <pre><code>
 void MainWindow::on_file_btn_clicked()
 {
@@ -229,10 +237,12 @@ void MainWindow::on_file_btn_clicked()
     label->setAlignment(Qt::AlignRight);
     ui->scroll_layout ->addWidget(label);
 }
+
 </code></pre>
 >>파일을 선택하면 “file=파일이름”으로 메시지를 전송한다. 이후 버퍼의 크기만큼 파일을 읽어 버퍼를 메시지로 하여 전송하고 회신을 받는다. 파일이 끝날 때 까지 반복한다.
   파일이 끝나면 “finish”메시지를 전송한다.<br/><br/>
 >> client(/macaoTalkClient/mainwindow.cpp)의 구현 부(수신자)
+>>
 <pre><code>
 else if (!strcmp(data_buf, "file")) //get file
 {
@@ -276,13 +286,16 @@ else if (!strcmp(data_buf, "file")) //get file
         }
     }
 }
+
 </code></pre>
+>>
 >> 받은 메시지를 “=”을 토큰으로 나누어 앞부분이 file일 경우 해당 부분을 시작한다.
    토큰으로 나눈 뒷부분을 이름으로 현재 실행파일과 같은 level에 있는 download 디렉토리에 파일을 생성하여 open한다. 이후 받은 메시지가 “finish”일 때 까지 받은 메시지를 파일에 쓰고 반복한다.
 > ### 5. 메시지 채팅
 >> 채팅 화면<br/>
 >> <img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/chat_message.png?raw=true" title="채팅"></img><br/>
 >> client(/macaoTalkClient/mainwindow.cpp)의 구현 부(송신자)
+>>
 <pre><code>
 void MainWindow::on_send_btn_clicked()
 {
@@ -310,9 +323,12 @@ void MainWindow::on_send_btn_clicked()
     label->setAlignment(Qt::AlignRight);
     ui->scroll_layout ->addWidget(label);
 }
+
 </code></pre>
+>>
 >> GUI의 LineEdit에 입력받은 값을 이용해 ”msg=입력받은 값“ 형식으로 전송한다.<br/><br/>
 >> client(/macaoTalkClient/mainwindow.cpp)의 구현 부(수신자)
+>>
 <pre><code>
 else if (!strcmp(data_buf, "msg"))  //get chat msg
 {
@@ -332,10 +348,13 @@ else if (!strcmp(data_buf, "msg"))  //get chat msg
         }
     }
 }
+
 </code></pre>
+>>
 >> 받은 메시지를 “=”을 토큰으로 나누어 앞부분이 msg일 경우 토큰 뒤의 내용을 이용해 Label을 생성하여 채팅 화면에 레이아웃에 추가해준다.
 > ### 6. Qt 소켓 통신
 >> client(/macaoTalkClient/main.cpp)의 구현 부
+>>
 <pre><code>
 int main(int argc, char *argv[])
 {
@@ -366,9 +385,12 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 }
+
 </code></pre>
+>>
 >> 프로그램이 시작되면 바로 서버에 연결할 수 있게 첫 window 객체 생성 전에 서버에 연결하고 window의 생성자에 소켓 fd를 주어 생성된 window에서 바로 통신을 처리할 수 있게 한다.<br/><br/>
 >> client(/macaoTalkClient/mainwindow.h)의 구현 부
+>>
 <pre><code>
 class MainWindow : public QMainWindow
 {
@@ -381,9 +403,12 @@ private slots:
 .
 .
 };
+
 </code></pre>
+>>
 >> 메시지 수신하면서 메시지를 전송할 수 있도록 메시지를 수신하고 처리하는 함수인 wait_chat() 함수를 slot에 선언해준다.<br/><br/>
 >> client(/macaoTalkClient/mainwindow.cpp)의 구현 부
+>>
 <pre><code>
 
 #define MAXDATASIZE 128
@@ -497,6 +522,7 @@ void MainWindow::wait_chat(){
 }
 
 </code></pre>
+>>
 >> socket에 메시지가 들어왔을 때 wait_chat() 함수가 호출될 수 있도록 QSocketNotifier 객체를 Read 모드로 생성한 후 wait_chat() 함수와 연결해준다.
    wait_chat() 함수에서는 받은 메시지를 “=”을 토큰으로 나누어 앞부분을 기준으로 정의된 행동을 실행한다.
 >
