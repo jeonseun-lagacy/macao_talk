@@ -21,11 +21,8 @@
 >> |최초 화면|등록 실패(이미 있는 이름)|등록 성공|
 >> |:----:|:----:|:----:|
 >> |<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login.png?raw=true" title="로그인 창"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login_failed.png?raw=true" title="로그인 실패"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login_success.png?raw=true" title="로그인 성공"></img>|
->>
-<pre><code>
 server(/macaoTalkServer/main.c)의 구현 부
-
-int init_usr(MYSQL mysql, char *arg, int fd){   //init user (success = 1, failed = 0)
+<pre><code>int init_usr(MYSQL mysql, char *arg, int fd){   //init user (success = 1, failed = 0)
     char q_buf[512];
     MYSQL_RES *res;
     MYSQL_ROW row;
@@ -58,11 +55,8 @@ int init_usr(MYSQL mysql, char *arg, int fd){   //init user (success = 1, failed
 >>|로그인 화면|메인화면|
 >>|:---:|:---:|
 >>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/login.png?raw=true" title="로그인"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/main.png?raw=true" title="메인 화면"></img>|
->>
-<pre><code>
 server(/macaoTalkServer/main.c)의 구현 부
-
-int enter_usr(MYSQL mysql, char *arg, int fd){ //login user (success = 1, failed = 0)
+<pre><code>int enter_usr(MYSQL mysql, char *arg, int fd){ //login user (success = 1, failed = 0)
     char q_buf[512];
     MYSQL_RES *res;
     MYSQL_ROW row;
@@ -94,11 +88,8 @@ int enter_usr(MYSQL mysql, char *arg, int fd){ //login user (success = 1, failed
 >>|메인 화면|채팅 상대의 이름 입력|채팅 생성|
 >>|:---------:|:---------:|:---------:|
 >>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/main.png?raw=true" title="메인화면"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/connecting.png?raw=true" title="이름입력"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/chat.png?raw=true" title="채팅생성"></img>|
->>
-<pre><code>
 server(/macaoTalkServer/main.c)의 구현 부
-
-int create_chat(MYSQL mysql, char * arg){  //create chat (return target fd)
+<pre><code>int create_chat(MYSQL mysql, char * arg){  //create chat (return target fd)
     char q_buf[512];
     MYSQL_RES *res;
     MYSQL_ROW row;
@@ -168,11 +159,8 @@ else if(!strcmp(data_buf, "conn")){    //create chat
 >> |파일 선택 화면|수신 결과|수신자 채팅방|송신자 채팅방|
 >> |:------:|:------:|:------:|:------:|
 >> |<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/select_file.png?raw=true" title="파일 선택"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/file_result.png?raw=true" title="수신 결과"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/get_result.png?raw=true" title="수신자 채팅방"></img>|<img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/send_result.png?raw=true" title="송신자 채팅방"></img>|
->>
-<pre><code>
 client(/macaoTalkClient/mainwindow.cpp)의 구현 부(송신자)
-
-void MainWindow::on_file_btn_clicked()
+<pre><code>void MainWindow::on_file_btn_clicked()
 {
     QStringList list;
     char name_buf[512];
@@ -237,10 +225,8 @@ void MainWindow::on_file_btn_clicked()
 </code></pre>
 >>파일을 선택하면 “file=파일이름”으로 메시지를 전송한다. 이후 버퍼의 크기만큼 파일을 읽어 버퍼를 메시지로 하여 전송하고 회신을 받는다. 파일이 끝날 때 까지 반복한다.
   파일이 끝나면 “finish”메시지를 전송한다.<br/><br/>
-<pre><code>
 client(/macaoTalkClient/mainwindow.cpp)의 구현 부(수신자)
-
-else if (!strcmp(data_buf, "file")) //get file
+<pre><code>else if (!strcmp(data_buf, "file")) //get file
 {
     int c =0;
     int filesize =5000;
@@ -288,10 +274,8 @@ else if (!strcmp(data_buf, "file")) //get file
 > ### 5. 메시지 채팅
 >> 채팅 화면<br/>
 >> <img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/chat_message.png?raw=true" title="채팅"></img><br/>
-<pre><code>
 client(/macaoTalkClient/mainwindow.cpp)의 구현 부(송신자)
-
-void MainWindow::on_send_btn_clicked()
+<pre><code>void MainWindow::on_send_btn_clicked()
 {
     char buf[MAXDATASIZE];
     char input[128];
@@ -320,9 +304,8 @@ void MainWindow::on_send_btn_clicked()
 
 </code></pre>
 >> GUI의 LineEdit에 입력받은 값을 이용해 ”msg=입력받은 값“ 형식으로 전송한다.<br/><br/>
-<pre><code>
 client(/macaoTalkClient/mainwindow.cpp)의 구현 부(수신자)
-
+<pre><code>
 else if (!strcmp(data_buf, "msg"))  //get chat msg
 {
     while (data_buf !=NULL)
@@ -346,9 +329,8 @@ else if (!strcmp(data_buf, "msg"))  //get chat msg
 >>
 >> 받은 메시지를 “=”을 토큰으로 나누어 앞부분이 msg일 경우 토큰 뒤의 내용을 이용해 Label을 생성하여 채팅 화면에 레이아웃에 추가해준다.
 > ### 6. Qt 소켓 통신
-<pre><code>
 client(/macaoTalkClient/main.cpp)의 구현 부
-
+<pre><code>
 int main(int argc, char *argv[])
 {
     int csock;
@@ -381,9 +363,8 @@ int main(int argc, char *argv[])
 
 </code></pre>
 >> 프로그램이 시작되면 바로 서버에 연결할 수 있게 첫 window 객체 생성 전에 서버에 연결하고 window의 생성자에 소켓 fd를 주어 생성된 window에서 바로 통신을 처리할 수 있게 한다.<br/><br/>
-<pre><code>
 client(/macaoTalkClient/mainwindow.h)의 구현 부
-
+<pre><code>
 class MainWindow : public QMainWindow
 {
 .
@@ -398,9 +379,8 @@ private slots:
 
 </code></pre>
 >> 메시지 수신하면서 메시지를 전송할 수 있도록 메시지를 수신하고 처리하는 함수인 wait_chat() 함수를 slot에 선언해준다.<br/><br/>
-<pre><code>
 client(/macaoTalkClient/mainwindow.cpp)의 구현 부
-
+<pre><code>
 #define MAXDATASIZE 128
 MainWindow::MainWindow(int csock, QWidget *parent) :
     QMainWindow(parent),
