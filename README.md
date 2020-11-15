@@ -225,6 +225,7 @@ client(/macaoTalkClient/mainwindow.cpp)의 구현 부(송신자)
 </code></pre>
 >>파일을 선택하면 “file=파일이름”으로 메시지를 전송한다. 이후 버퍼의 크기만큼 파일을 읽어 버퍼를 메시지로 하여 전송하고 회신을 받는다. 파일이 끝날 때 까지 반복한다.
   파일이 끝나면 “finish”메시지를 전송한다.
+
 client(/macaoTalkClient/mainwindow.cpp)의 구현 부(수신자)
 <pre><code>else if (!strcmp(data_buf, "file")) //get file
 {
@@ -274,6 +275,7 @@ client(/macaoTalkClient/mainwindow.cpp)의 구현 부(수신자)
 > ### 5. 메시지 채팅
 >> 채팅 화면<br/>
 >> <img src="https://github.com/alsrhkd77/macao_talk/blob/master/screenshot/chat_message.png?raw=true" title="채팅"></img>
+
 client(/macaoTalkClient/mainwindow.cpp)의 구현 부(송신자)
 <pre><code>void MainWindow::on_send_btn_clicked()
 {
@@ -304,6 +306,7 @@ client(/macaoTalkClient/mainwindow.cpp)의 구현 부(송신자)
 
 </code></pre>
 >> GUI의 LineEdit에 입력받은 값을 이용해 ”msg=입력받은 값“ 형식으로 전송한다.
+
 client(/macaoTalkClient/mainwindow.cpp)의 구현 부(수신자)
 <pre><code>
 else if (!strcmp(data_buf, "msg"))  //get chat msg
@@ -363,6 +366,7 @@ int main(int argc, char *argv[])
 
 </code></pre>
 >> 프로그램이 시작되면 바로 서버에 연결할 수 있게 첫 window 객체 생성 전에 서버에 연결하고 window의 생성자에 소켓 fd를 주어 생성된 window에서 바로 통신을 처리할 수 있게 한다.
+
 client(/macaoTalkClient/mainwindow.h)의 구현 부
 <pre><code>
 class MainWindow : public QMainWindow
@@ -379,6 +383,7 @@ private slots:
 
 </code></pre>
 >> 메시지 수신하면서 메시지를 전송할 수 있도록 메시지를 수신하고 처리하는 함수인 wait_chat() 함수를 slot에 선언해준다.
+
 client(/macaoTalkClient/mainwindow.cpp)의 구현 부
 <pre><code>
 #define MAXDATASIZE 128
