@@ -1,5 +1,6 @@
 # macao_talk
 전세운, 송민광 시스템 프로그래밍 기말 팀 과제
+> macaoTalkClient 폴더에 download 폴더를 만들어주어야 Client가 정상적으로 동작 합니다.
 
 * 소켓,  DB, QT를 이용
 
